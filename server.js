@@ -272,7 +272,7 @@ app.get('/download-receipt/:orderId', isAuthenticated, (req, res) => {
 // Logout Route
 app.get("/logout", (req, res) => {
     req.session.destroy(() => { // Destroy session (log out the user)
-        res.redirect("/login");
+        res.redirect("/");
     });
 });
 
