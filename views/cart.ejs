@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<h2 style="text-align: center; padding: 20px 0; font-size: 2rem;">Your Cart</h2>
+<div class="display-products">
+    <% cart.items.forEach(item=> { %>
+        <div class="product-card">
+            <div>
+                <img src="<%= item.image %>" alt="<%= item.name%> image">
+                <h3>
+                    <%= item.name %>
+                </h3>
+                <h3>
+                    <%= item.desc %>
+                </h3>
+                <h3>₹<%= item.price %> (x<%= item.quantity %>)</h3>
+
+                <form action="/remove-from-cart" method="POST">
+                    <input type="hidden" name="name" value="<%= item.name %>">
+                    <button type="submit" style="background-color: red; color: white; padding: 5px 10px; border: none; border-radius: 5px;">
+                        <i class="fa-solid fa-trash"></i> Remove
+                    </button>
+                </form>
+            </div>
+        </div>
+        <% }); %>
+</div>
+<form action="/checkout" method="POST" class="btn-flex" style="width: 100px; margin: 0 auto;">
+    <button type="submit">Checkout</button>
+</form>

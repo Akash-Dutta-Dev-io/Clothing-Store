@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products Page</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body>
+    <div style="padding: 20px 10%;">
+        <nav>
+            <div class="logo">Logo</div>
+            <ul id="menuList">
+                <li><a href="/">Home</a></li>
+                <li><a href="">About Us</a></li>
+                <li><a href="">Blog</a></li>
+                <li><a href="">Contact</a></li>
+            </ul>
+            <div class="btn-flex">
+            
+                <button><a href="/cart"><i class="fa-solid fa-cart-shopping"></i> &nbsp;Cart</a></button>
+            
+                <button><a href="/orders"><i class="fa-solid fa-box"></i>&nbsp;Orders</a></button>
+                <a href="/logout"><i class="fas fa-sign-out" style="color: red; font-size: 1.5rem;"></i></a>
+        </div>
+            <div class="menu-icon">
+                <i class="fa-solid fa-bars" onclick="toggleMenu()"></i>
+            </div>
+        </nav>
+    </div>
+
+    <div style="padding: 20px 10%; text-align: center; margin-top: 10px; ">
+        <input type="text" id="searchInput" placeholder="Search items..." style="padding: 10px; width: 50%; font-size: 1rem; border: 1px solid #ccc; border-radius: 20px;">
+    </div>
+    
+
+    <h3 style="text-align: center; padding: 20px 0; font-size: 2rem;">Our Collection</h3>
+    <div class="display-products">
+        <% menu.forEach(item=> { %>
+            <div class="product-card">
+                <img src="<%= item.image %>" alt="<%= item.name%> image">
+                <h3 class="item-name">
+                    <%= item.name %>
+                </h3>
+
+                <h3 class="item-desc" >
+                    <%= item.desc %>
+                </h3>
+
+                <h3 class="item-price">
+                    ₹<%= item.price %>
+                </h3>
+                <div class="btn-flex">
+                <form action="/add-to-cart" method="POST">
+                    <input type="hidden" name="name" value="<%= item.name %>">
+                    <input type="hidden" name="desc" value="<%= item.desc %>">
+                    <input type="hidden" name="image" value="<%= item.image %>">
+                    <input type="hidden" name="price" value="<%= item.price %>">
+                    <button type="submit"><i class="fa-solid fa-cart-shopping"></i> &nbsp;Add to Cart</button>
+                </form>
+
+                <form action="/order-now" method="POST" onsubmit="return getDeliveryLocation('<%= item._id %>')">
+                    <input type="hidden" name="name" value="<%= item.name %>">
+                    <input type="hidden" name="desc" value="<%= item.desc %>"> <!-- ✅ Fixed here -->
+                    <input type="hidden" name="price" value="<%= item.price %>">
+                    <input type="hidden" id="deliveryAddress_<%= item._id %>" name="address">
+                    <button type="submit">Order Now</button>
+                </form>
+                
+            </div>
+            <script>
+                function getDeliveryLocation(id) {
+                    let address = prompt("Enter your delivery location:");
+                    if (!address) {
+                        alert("Delivery location is required!");
+                        event.preventDefault();
+                        return false;
+                    }
+                    document.getElementById("deliveryAddress_" + id).value = address;
+                    return true;
+                }
+            </script>
+
+            
+
+            </div>
+            <% }) %>
+    </div>
+
+    <script src="/index.js"></script>
+
+
+</body>
+
+</html>

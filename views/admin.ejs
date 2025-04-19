@@ -1,0 +1,62 @@
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+
+<div style="padding: 20px 10%;">
+    <nav>
+        <div class="logo">Logo</div>
+        <ul id="menuList">
+            <li><a href="/">Home</a></li>
+            <li><a href="">About Us</a></li>
+            <li><a href="">Blog</a></li>
+            <li><a href="">Contact</a></li>
+        </ul>
+        <div class="btn-flex">
+               <button> <a href="/menu">View Menu</a></button>
+        </div>
+        <a href="/logout"><i class="fas fa-sign-out" style="color: red; font-size: 1.5rem;"></i></a>
+        <div class="menu-icon">
+            <i class="fa-solid fa-bars" onclick="toggleMenu()"></i>
+        </div>
+    </nav>
+</div>
+
+
+<h2 style="text-align: center; padding: 20px 0; font-size: 2rem; ">Admin Dashboard</h2>
+
+<!-- Upload New Menu Item -->
+<form action="/admin/upload" method="POST" enctype="multipart/form-data" class="upload-form">
+    <div class="input">
+        <input type="text" name="name" placeholder="Item Name" required>
+        <input type="text" name="desc" placeholder="Description" required>
+        <input type="number" name="price" placeholder="Price" required>
+        <input type="file" name="image" accept="image/*" required>
+    </div>
+    <div class="btn">
+        <button type="submit">Upload Item</button>
+    </div>
+</form>
+
+<h3 style="text-align: center; padding: 20px 0; font-size: 2rem; ">New Collection</h3>
+<div class="display-products">
+    <% menu.forEach(item=> { %>
+        <div class="product-card">
+            <img src="<%= item.image %>">
+            <!-- <img src="<%= item.image %>" alt="<%= item.name%> image"> -->
+            <h3 class="item-name">
+                <%= item.name %>
+            </h3>
+
+            <h3 class="item-desc">
+                <%= item.desc %>
+            </h3>
+
+            <h3>
+                ₹<%= item.price %>
+            </h3>
+            <form action="/admin/delete/<%= item._id %>" method="POST" style="display:inline;" class="btn-flex">
+                <button type="submit">Delete</button>
+            </form>
+        </div>
+        <% }); %>
+</div>

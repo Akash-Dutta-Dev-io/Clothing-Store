@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page</title>
+</head>
+<style>
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: aquamarine;
+    }
+
+    .login-form {
+        border: 2px solid black;
+        border-radius: 30px;
+        padding: 20px;
+        margin-top: 130px;
+        width: 30%;
+        height: 50vh;
+        background-color: blueviolet;
+    }
+
+    .login-form h1{
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: bold;
+    }
+
+    .login-form .form {
+        display: flex;
+        flex-direction: column;
+        /* padding: 40px; */
+    }
+
+    .form input{
+        width: 100%;
+        border: none;
+        border-radius: 40px;
+        border: 1px solid blue;
+        margin-bottom: 10px;
+        padding: 10px 0;
+    }
+
+    .form input::placeholder{
+        color: black;
+        padding: 10px;
+        font-size: larger;
+        font-weight: 500;
+    }
+
+    .form button{
+        border: none;
+        padding: 10px 20px;
+        border: 2px solid green;
+        border-radius: 30px;
+        font-size: 1.2rem;
+        width: 50%;
+        margin: auto;
+    }
+
+    .login-form a{
+        color: black;
+        font-weight: bold;
+        text-decoration: none;
+    }
+</style>
+
+<body>
+    <div class="login-form">
+        <h1>Login</h1>
+        <form action="/login" method="post" class="form">
+            <input type="text" placeholder="Enter Username" name="username">
+            <input type="password" placeholder="Enter Password" name="password">
+            <button>Login</button>
+        </form>
+        <p>Did'nt have an account <a href="/register">Register</a></p>
+    </div>
+</body>
+
+</html>

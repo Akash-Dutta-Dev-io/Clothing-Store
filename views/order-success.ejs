@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Order Page</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body>
+    <div class="order-success">
+        <div class="success">
+            <i class="fa-duotone fa-solid fa-circle-check"></i>
+        </div>
+        <h2>Order Placed Successfully!</h2>
+        <p>Your order ID: <%= orderId %>
+        </p>
+        <div class="btn-flex">
+            <button><a href="/download-receipt/<%= orderId %>">View Order</a></button>
+            <button><a href="/menu">Continue Shopping</a></button>
+        </div>
+    </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+
+</html>

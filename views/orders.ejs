@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="style.css">
+    <h2 style="text-align: center; padding: 20px 0; font-size: 2rem; ">Orders</h2>
+    <div class="display-products">
+        <% orders.forEach(order=> { %>
+            <div class="product-card">
+                <h4>Order #<%= order._id %>
+                </h4>
+                <p>Total Price: ₹<%= order.totalPrice %>
+                </p>
+                <div>
+                    <% order.items.forEach(item=> { %>
+                        <div>
+                            <%= item.name %> - ₹<%= item.price %> (x<%= item.quantity %>)
+                        </div>
+                        <% }); %>
+                </div>
+                <p>Status: <%= order.status %>
+                </p>
+            </div>
+            <% }); %>
+    </div>
